@@ -5,6 +5,9 @@
  */
 package main;
 
+import classes.User;
+import classes.User.AccessLevel;
+import exceptions.InvalidGenreException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -59,7 +62,8 @@ public class PokemonGame {
     }
     
     public static void registerUser(Scanner sc, Connection c){
-        System.out.println("Tell me your username:");
+         try {
+         System.out.println("Tell me your username:");
         String username=sc.nextLine();
         System.out.println("Choose your Password:");
         String password=sc.nextLine();
@@ -68,8 +72,14 @@ public class PokemonGame {
         System.out.println("Tell me about you:");
         String description=sc.nextLine();
         
-        //Usar un statement para registrar al usuario
-        
+       
+            //Usar un statement para registrar al usuario
+            User actual=new User(username,genreChar,
+                    description,password,AccessLevel.BASIC,null);
+        } catch (InvalidGenreException ex) {
+                System.err.println(ex.getMessage());
+                registerUser(sc,c);
+        }
     }
     
     public static void loginUser(Scanner sc, Connection c){

@@ -6,6 +6,7 @@
 package classes;
 
 import classes.Pokemon;
+import exceptions.InvalidGenreException;
 import java.time.LocalDateTime;
 
 /**
@@ -24,7 +25,7 @@ public class User extends LivingBeing {
             BASIC
      }
 
-    public User(String n,boolean g,String d,String password,  AccessLevel accessLevel, Pokemon pokemon) {
+    public User(String n,char g,String d,String password,  AccessLevel accessLevel, Pokemon pokemon) throws InvalidGenreException {
         super(n, g, d);
         this.password = password;
         this.lastConnection = null;

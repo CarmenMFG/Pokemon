@@ -5,18 +5,20 @@
  */
 package classes;
 
+import exceptions.InvalidGenreException;
+
 /**
  *
  * @author cenec
  */
 public class LivingBeing {
         private String name;
-        private boolean genre;
+        private boolean genre; //Female is represented by true, Male by false
         private String Description;
 
-    public LivingBeing(String name, boolean genre, String Description) {
+    public LivingBeing(String name, char genre, String Description) throws InvalidGenreException {
         this.name = name;
-        this.genre = genre;
+        this.setGenre(genre);
         this.Description = Description;
     }
 
@@ -28,12 +30,23 @@ public class LivingBeing {
         this.name = name;
     }
 
-    public boolean isGenre() {
-        return genre;
+    public char getGenre() {
+        if(this.genre){
+            return 'f';
+        }else{
+            return 'm';
+        }
     }
 
-    public void setGenre(boolean genre) {
-        this.genre = genre;
+    public final void setGenre(char genre) throws InvalidGenreException{
+        if(genre=='f'||genre=='F'){
+            this.genre=true;
+        }else if (genre=='m'||genre=='M'){
+            this.genre=false;
+        }else{
+            throw new InvalidGenreException(genre+" is not"
+                    + "a valid genre. Only m and f are accepted.");
+        }
     }
 
     public String getDescription() {

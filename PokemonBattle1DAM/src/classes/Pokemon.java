@@ -1,5 +1,7 @@
 package classes;
 
+import exceptions.InvalidGenreException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,7 +26,7 @@ public class Pokemon extends LivingBeing {
         PLANT
     };
 
-    public Pokemon(int id,String n, boolean g, String d,PokemonType type, short lifePoints,String sp) {
+    public Pokemon(int id,String n, char g, String d,PokemonType type, short lifePoints,String sp) throws InvalidGenreException {
         super(n, g, d);
         this.id=id;
         this.species=sp;
